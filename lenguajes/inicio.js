@@ -78,3 +78,18 @@ render.dato = 100
 
 render('Hola')
 console.log(render)
+
+// Callbacks
+
+console.log(cuadrado(23))
+
+function calcular(a, b, callback) {
+    console.log(callback(a,b))
+}
+
+calcular(2, 5, producto)
+calcular(2, 5, (a,b)=>a/b)
+
+setTimeout(()=>{
+    console.log('Por fin')
+},2000)
