@@ -1,0 +1,15 @@
+<h3>Saludo Ref</h3>
+<div class="form-group">
+  <label for="nombre">Dinos tu nombre</label>
+  <input type="text" class="form-control" #refNombre
+    value="amigo"
+    name="nombre" id="nombre" 
+    placeholder="Escribe aquí tu nombre">
+</div>
+<button type="button" class="btn btn-primary" 
+    title="Pulsa aqui para borrar" (click)="refNombre.value = ''">
+    Borrar
+</button>
+<p>
+    Hola {{ refNombre.value }}
+</p>
