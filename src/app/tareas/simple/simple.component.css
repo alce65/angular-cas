@@ -1,0 +1,19 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.completed {
+    text-decoration: line-through;
+    font-style: italic;
+}
+
+.boton {
+    cursor: pointer;
+    margin-left: 2rem;;
+}
+
+dialog {
+    background-color: brown;
+    color: bisque;
+}

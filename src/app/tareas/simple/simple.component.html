@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <p>Tareas Simples</p>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="nueva-tarea">Descripción de la nueva tarea</label>
+                <input type="text" class="form-control" id="nueva-tarea"
+                    [(ngModel)]="nuevaTarea.nombre" name="nueva-tarea"
+                    (keydown.enter)="onAddTarea()">
+            </div>
+            <button type="button" class="btn btn-primary"
+             (click)="onAddTarea()">Añadir</button>
+        </div>
+        <div class="col-6" *ngIf="tareas.length; else animate">
+            <h3>Lista de tareas
+                <button type="button" class="btn btn-danger btn-sm" (click)="onDeleteConfirmar()">Borrar todas</button>
+            </h3>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of tareas; let i = index">
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" 
+                            [name]="item.nombre" (change)="onChecked()"
+                            [(ngModel)]="item.isCompleted">
+                            <span [ngClass]="{completed: item.isCompleted}">{{ item.nombre }}</span>
+                            <span class="boton" (click)="onDeleteTarea(i)">🗑</span>
+                      </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <ng-template #animate>
+            <p class="col-12 mt-4">Animate a comennzar con alguna tarea</p>
+        </ng-template>   
+        
+        <dialog #confirmar>
+            <p>¿Estas seguro de borrar todas la tareas?</p>
+            <div class="text-center"> 
+                <button type="button" class="btn btn-warning mr-3" (click)="onDeleteAll(true)">SI</button>
+                <button type="button" class="btn btn-warning" (click)="onDeleteAll(false)">NO</button>
+            </div>
+        </dialog>
+    </div>
+</div>
+
