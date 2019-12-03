@@ -1,10 +1,25 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <p>Tareas Plus</p>
+            <h3>Tareas Plus</h3>
         </div>
+        <cas-nueva class="col-6" (addTarea)="onAddTarea($event)"></cas-nueva>
+        <div class="col-6" *ngIf="tareas.length; else animate">
+            <h3>Lista de tareas
+                <button type="button" class="btn btn-danger btn-sm" disabled
+                (click)="onDeleteConfirmar()">Borrar todas</button>
+            </h3>
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let item of tareas; let i = index">
+                    <cas-tarea class="col-6" [tarea]="item" [i]="i"
+                        (tareaDelete)="onDeleteTarea($event)" (tareaChecked)="onCheckedTarea($event)"
+                    ></cas-tarea>
+                </li>
+            </ul>
+        </div>
+        <ng-template #animate>
+            <p class="col-12 mt-4">Animate a comennzar con alguna tarea</p>
+        </ng-template> 
+        <cas-confirmar (confirm)="onDeleteAll($event)"></cas-confirmar>
     </div>
 </div>
-
-
-

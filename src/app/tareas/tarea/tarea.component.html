@@ -1,1 +1,9 @@
-<p>tarea works!</p>
+<div class="form-check">
+    <label class="form-check-label">
+      <input type="checkbox" class="form-check-input" 
+           [formControl]="fcCheck">
+          <!-- (change)="onCheckedSubmit()" -->
+          <span [ngClass]="{completed: tarea.isCompleted}">{{ tarea.nombre }}</span>
+          <span class="boton" (click)="onDeleteSubmit()">🗑</span>
+    </label>
+  </div>
