@@ -9,12 +9,15 @@ import { TareaModel } from 'src/app/models/tarea.model';
 export class PlusComponent implements OnInit {
   tareas: Array<TareaModel>;
   storeKey: string;
+  openConfirmar: boolean;
+  nodoModal: any;
 
   constructor() { }
 
   ngOnInit() {
     this.storeKey = 'tareas';
     this.tareas = JSON.parse(localStorage.getItem(this.storeKey)) || [];
+    this.openConfirmar = false;
   }
 
   onAddTarea(tarea: TareaModel) {
@@ -35,6 +38,7 @@ export class PlusComponent implements OnInit {
 
   onDeleteConfirmar() {
     // open modal
+    this.openConfirmar = true;
   }
 
   onDeleteAll(del: boolean) {
@@ -42,7 +46,8 @@ export class PlusComponent implements OnInit {
       this.tareas = [];
       localStorage.removeItem(this.storeKey);
     }
-    // this.modal.nativeElement.close();
+    // close modal
+    this.openConfirmar = false;
   }
 
   private actualizarStore() {

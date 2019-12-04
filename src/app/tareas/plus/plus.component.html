@@ -6,7 +6,7 @@
         <cas-nueva class="col-6" (addTarea)="onAddTarea($event)"></cas-nueva>
         <div class="col-6" *ngIf="tareas.length; else animate">
             <h3>Lista de tareas
-                <button type="button" class="btn btn-danger btn-sm" disabled
+                <button type="button" class="btn btn-danger btn-sm"
                 (click)="onDeleteConfirmar()">Borrar todas</button>
             </h3>
             <ul class="list-group">
@@ -20,6 +20,8 @@
         <ng-template #animate>
             <p class="col-12 mt-4">Animate a comennzar con alguna tarea</p>
         </ng-template> 
-        <cas-confirmar (confirm)="onDeleteAll($event)"></cas-confirmar>
+        <cas-confirmar [msg]="'¿Estas seguro de borrar todas las tareas?'"
+            [estado]="openConfirmar"
+            (confirm)="onDeleteAll($event)"></cas-confirmar>
     </div>
 </div>
