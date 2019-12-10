@@ -1,0 +1,66 @@
+<h3>Form Model Driven (Reactive)</h3>
+<form name="form-md" id ="form-md">
+    <fieldset>
+        <legend>Datos de usuario</legend>
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" name="nombre" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" class="form-control" name="apellidos" id="apellidos">
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI</label>
+            <input type="text" class="form-control" name="dni" id="dni">
+            </div>  
+        <div class="form-group">
+            <label for="email">Correo</label>
+            <input type="email" class="form-control" name="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="passw">Contraseña</label>
+            <input type="passw" class="form-control" name="passw" id="passw">
+        </div>
+        <div class="form-group">
+            <label for="nacim">Fecha de nacimiento</label>
+            <input type="date" class="form-control" name="nacim" id="nacim">
+        </div>
+        <div class="form-group">
+          <label for="coment">Comentarios</label>
+          <textarea class="form-control" name="coment" id="coment" rows="3"></textarea>
+        </div>                            
+    </fieldset>    
+    <fieldset>
+        <legend>Datos del curso</legend>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="isOk" id="isOk">
+            Estoy de acuerdo con ....
+            </label>
+        </div>  
+        <div>
+            <legend>Turno</legend>
+            <div class="form-check" *ngFor="let item of turnos">
+                <label class="form-check-label" [title]="item.descripcion">
+                    <input type="radio" class="form-check-input" name="turno"
+                    [value]="item">
+                    {{ item.nombre }}
+                </label>
+            </div>
+        </div>  
+        <div class="form-group" >
+        <label for="curso">Selecciona el tema</label>
+            <select class="form-control" name="curso" id="curso">
+                <option value=""></option>
+                <option *ngFor="let item of cursos" 
+                    [title]="item.descripcion"
+                    [ngValue]="item"> {{item.nombre}}</option>
+            </select>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary">
+        Enviar
+    </button>
+</form>   
+

@@ -1,0 +1,89 @@
+<h3>Form Template Driven</h3>
+<form name="form-td" id ="form-td" #formRef="ngForm" (ngSubmit)="onSubmit()">
+    <fieldset>
+        <legend>Datos de usuario</legend>
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" 
+            [(ngModel)]="alumno.nombre" #refNombre=ngModel
+            name="nombre" id="nombre" required minlength="3">
+        </div>
+        <div *ngIf="refNombre.invalid && refNombre.touched">
+            <p *ngIf="refNombre?.errors.required">
+                El campo nombre debe rellenarse</p>
+            <p *ngIf="refNombre?.errors.minlength">
+                El campo nombre debe tener más de 3 caracterres
+            </p>
+        </div>
+        <div class="form-group">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" class="form-control" 
+            [(ngModel)]="alumno.apellidos"
+            name="apellidos" id="apellidos">
+        </div>
+        <div class="form-group">
+            <label for="dni">DNI</label>
+            <input type="text" class="form-control" 
+            [(ngModel)]="alumno.dni"
+            name="dni" id="dni">
+            </div>  
+        <div class="form-group">
+            <label for="email">Correo</label>
+            <input type="email" class="form-control" 
+            [(ngModel)]="alumno.email"
+            name="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="passw">Contraseña</label>
+            <input type="passw" class="form-control" 
+            [(ngModel)]="alumno.passwd"
+            name="passw" id="passw">
+        </div>
+        <div class="form-group">
+            <label for="nacim">Fecha de nacimiento</label>
+            <input type="date" class="form-control" 
+            [(ngModel)]="alumno.nacim"
+            name="nacim" id="nacim">
+        </div>
+        <div class="form-group">
+          <label for="coment">Comentarios</label>
+          <textarea class="form-control" 
+          [(ngModel)]="alumno.coments"
+          name="coment" id="coment" rows="3"></textarea>
+        </div>                            
+    </fieldset>    
+    <fieldset>
+        <legend>Datos del curso</legend>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" 
+            [(ngModel)]="alumno.isOk"
+            name="isOk" id="isOk">
+            Estoy de acuerdo con ....
+            </label>
+        </div>  
+        <div>
+            <legend>Turno</legend>
+            <div class="form-check" *ngFor="let item of turnos">
+                <label class="form-check-label" [title]="item.descripcion">
+                    <input type="radio" class="form-check-input" name="turno"
+                    [value]="item" [(ngModel)]="alumno.turno">
+                    {{ item.nombre }}
+                </label>
+            </div>
+        </div>  
+        <div class="form-group" >
+        <label for="curso">Selecciona el tema</label>
+            <select class="form-control" 
+            [(ngModel)]="alumno.curso"
+            name="curso" id="curso">
+                <option *ngFor="let item of cursos" 
+                    [title]="item.descripcion"
+                    [ngValue]="item"> {{item.nombre}}</option>
+            </select>
+        </div>
+    </fieldset>
+    <button type="submit" class="btn btn-primary" [disabled]="formRef.invalid">
+        Enviar
+    </button>
+</form>
