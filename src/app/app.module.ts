@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 
 import es from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+
 registerLocaleData(es, 'es');
 
 @NgModule({
@@ -18,7 +19,9 @@ registerLocaleData(es, 'es');
     AppRoutingModule,
     CoreModule
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es' }],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es' }
+  ],
   exports: [],
   bootstrap: [AppComponent]
 })

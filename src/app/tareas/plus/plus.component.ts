@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TareaModel } from 'src/app/models/tarea.model';
+import { StoreTareasService } from 'src/app/services/store-tareas.service';
 
 @Component({
   selector: 'cas-plus',
@@ -8,15 +9,13 @@ import { TareaModel } from 'src/app/models/tarea.model';
 })
 export class PlusComponent implements OnInit {
   tareas: Array<TareaModel>;
-  storeKey: string;
   openConfirmar: boolean;
   nodoModal: any;
 
-  constructor() { }
+  constructor(private storeService: StoreTareasService) { }
 
   ngOnInit() {
-    this.storeKey = 'tareas';
-    this.tareas = JSON.parse(localStorage.getItem(this.storeKey)) || [];
+    this.tareas = this.storeService.getTareas();
     this.openConfirmar = false;
   }
 
@@ -44,14 +43,13 @@ export class PlusComponent implements OnInit {
   onDeleteAll(del: boolean) {
     if (del) {
       this.tareas = [];
-      localStorage.removeItem(this.storeKey);
+      this.storeService.removeTareas();
     }
     // close modal
     this.openConfirmar = false;
   }
 
   private actualizarStore() {
-    localStorage.setItem(this.storeKey,
-      JSON.stringify(this.tareas));
+    this.storeService.setTareas(this.tareas);
   }
 }

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlLibros: 'https://www.empresa.com/books/?q=intitle:'
 };

@@ -1,0 +1,20 @@
+<h3>Libros by-mock </h3>
+<div class="form-group">
+        <label for="nueva-tarea">Buscar en el titulo</label>
+        <input type="text" class="form-control" id="nueva-tarea"
+            [formControl]="fcClave">
+</div>
+<button type="button" class="btn btn-primary"
+    (click)="onBuscar()">Buscar</button>
+<button type="button" class="btn btn-primary"
+    (click)="onBuscarPromise()">Buscar Promesa</button>
+
+<div *ngIf="libros.length">
+    <h4>Libros sobre {{ clave }}</h4>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of libros">
+            <p>{{item.id}} - {{ item.autores}}</p>
+            <p>{{ item.titulo}}</p>
+        </li>
+    </ul>
+</div>
