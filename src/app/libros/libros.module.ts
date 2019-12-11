@@ -6,10 +6,11 @@ import { MainComponent } from './main/main.component';
 import { ByMockComponent } from './by-mock/by-mock.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ByGoogleComponent } from './by-google/by-google.component';
+import { ByServiceComponent } from './by-service/by-service.component';
 
 
 @NgModule({
-  declarations: [MainComponent, ByMockComponent, ByGoogleComponent],
+  declarations: [MainComponent, ByMockComponent, ByGoogleComponent, ByServiceComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
